@@ -9,4 +9,24 @@
   width: $dashboard-width;
   margin-left: $dashboard-margin-r-l;
   margin-right: $dashboard-margin-r-l;
+  .volumetric-container {
+    height:100vh;
+  }
+}
+
+.lang-switcher {
+  color: #6c757d ;
+  a {
+    color: #6c757d;
+    cursor: pointer;
+    &:hover {
+      color:red;
+      text-decoration: none;
+    }
+  }
+  a.active-lang {
+    cursor: pointer;
+    color: $primary;
+    font-weight: bold;
+  }
 }
