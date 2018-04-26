@@ -1,0 +1,12 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+// Variables
+@import "variables";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.dashboard {
+  width: $dashboard-width;
+  margin-left: $dashboard-margin-r-l;
+  margin-right: $dashboard-margin-r-l;
+}

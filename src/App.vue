@@ -1,0 +1,15 @@
+<template>
+  <div class="container-fluid dashboard" id="app">
+    <router-view/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
+<style lang="scss">
+@import './assets/sass/app.scss';
+</style>
