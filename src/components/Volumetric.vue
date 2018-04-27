@@ -21,16 +21,22 @@ export default {
     setLanguage(lang) {
       this.language = lang;
     },
-    calculateVolume() {
-      const pi = 3.1415;
+    addEntry() {
       let volume = {
         diameter: this.diameter,
         length: this.length,
         amount: this.amount,
-        volume: (pi * (Math.pow((this.diameter/2), 2)/10000) * this.length) * this.amount,
+        volume: this.calculateVolume(),
       }
       this.list.push(volume);
       this.diameter = this.length = this.amount = null;
+    },
+    calculateVolume() {
+      const pi = 3.1415;
+      let radius = (this.diameter/2) / 100;
+      let r2 = Math.pow(radius, 2);
+      let vol = pi * r2 * this.length;
+      return vol * this.amount;
     },
     print() {
       var data=document.getElementById('printMe').innerHTML;
@@ -59,7 +65,7 @@ export default {
           <h5 class="card-title"><span v-lang.title></span></h5>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="calculateVolume()">
+          <form v-on:submit.prevent="addEntry()">
             <div class="form-group">
               <label for="diameter"><span v-lang.diameterLabel></span></label>
               <input type="number" class="form-control" id="diameter" aria-describedby="diameterHelp" v-model="diameter" min="1" required>
@@ -67,7 +73,7 @@ export default {
             </div>
             <div class="form-group">
               <label for="length"><span v-lang.lengthLabel></span></label>
-              <input type="number" class="form-control" id="length" v-model="length" min="1" required>
+              <input type="number" class="form-control" id="length" v-model="length" min="1" step="0.1" required>
             </div>
             <div class="form-group">
               <label for="amount"><span v-lang.amountLabel></span></label>
