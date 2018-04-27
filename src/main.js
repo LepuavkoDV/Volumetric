@@ -2,11 +2,24 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 /* eslint-disable no-new */
 import Vue from 'vue';
+import MultiLanguage from 'vue-multilanguage';
+import Print from 'vue-print-nb';
+
 import App from './App';
 import router from './router';
-import lang from './lang';
+import { ru } from './lang/ru';
+import { ua } from './lang/ua';
+import { en } from './lang/en';
 
 Vue.config.productionTip = false;
+
+Vue.use(MultiLanguage, {
+  default: 'ru',
+  ru,
+  ua,
+  en,
+});
+Vue.use(Print);
 
 new Vue({
   el: '#app',
