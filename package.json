@@ -14,19 +14,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.5",
-    "@fortawesome/fontawesome-free-solid": "^5.0.10",
-    "@fortawesome/vue-fontawesome": "0.0.22",
     "bootstrap": "^4.1.0",
-    "bootstrap-vue": "^2.0.0-rc.8",
     "express": "^4.16.3",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "vue": "^2.5.2",
     "vue-multilanguage": "^3.0.5",
-    "vue-print-nb": "^1.0.3",
-    "vue-round-filter": "^1.1.2",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

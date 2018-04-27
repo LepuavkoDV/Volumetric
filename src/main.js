@@ -3,7 +3,6 @@
 /* eslint-disable no-new */
 import Vue from 'vue';
 import MultiLanguage from 'vue-multilanguage';
-import Print from 'vue-print-nb';
 
 import App from './App';
 import router from './router';
@@ -19,7 +18,6 @@ Vue.use(MultiLanguage, {
   ua,
   en,
 });
-Vue.use(Print);
 
 new Vue({
   el: '#app',
