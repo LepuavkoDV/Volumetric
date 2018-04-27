@@ -6,5 +6,6 @@ export const ru = {
   amountLabel: 'Кол-во бревен',
   submit: 'Считать',
   volumeLabel: 'Обьем (м<sup><small>3</small></sup>)',
-  print: 'Печатать'
+  print: 'Печатать',
+  total: 'Всего'
 };

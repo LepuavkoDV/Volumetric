@@ -6,5 +6,6 @@ export const ua = {
   amountLabel: 'Кількість колод',
   submit: 'Розрахувати',
   volumeLabel: 'Об `єм (м<sup><small>3</small></sup>)',
-  print: 'Друкувати'
+  print: 'Друкувати',
+  total: 'Всього'
 };

@@ -11,6 +11,15 @@ export default {
       amount: null,
     }
   },
+  computed: {
+    fCalcTotalVolume: function () { // Расчёт сумм по строкам и общего итога
+      var tbTotalVolume = 0;
+      for (var i = 0; i < this.list.length; ++i) { // Цикл по строкам таблицы
+        tbTotalVolume = tbTotalVolume + this.list[i].volume; // Расчёт итоговой суммы
+      }
+      return tbTotalVolume; // Функция возвращает итоговую сумму
+    }
+  },
   methods: {
     currentLanguage(lang) {
       if (this.language === lang) {
@@ -82,7 +91,7 @@ export default {
             <button type="submit" class="btn btn-primary"><span v-lang.submit></span></button>
           </form>
           <div id="printMe" class="resultsTable" v-if="list.length > 0">
-            <table class="table table-striped">
+            <table class="table table-responsive-lg">
               <thead>
                 <tr>
                   <th><span v-lang.diameterLabel></span></th>
@@ -97,6 +106,11 @@ export default {
                   <td>{{vol.length}}</td>
                   <td>{{vol.amount}}</td>
                   <td>{{vol.volume.toFixed(3)}}</td>
+                </tr>
+                <tr class="table-primary">
+                  <td colspan="2"></td>
+                  <td><span v-lang.total></span>:</td>
+                  <td>{{fCalcTotalVolume.toFixed(3)}}</td>
                 </tr>
               </tbody>
             </table>

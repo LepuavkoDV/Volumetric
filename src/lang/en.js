@@ -6,5 +6,6 @@ export const en = {
   amountLabel: 'Number of logs',
   submit: 'Count',
   volumeLabel: 'Volume (m<sup><small>3</small></sup>)',
-  print: 'Print'
+  print: 'Print',
+  total: 'Total'
 };
