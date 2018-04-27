@@ -1,9 +1,11 @@
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500&subset=cyrillic');
 // Variables
 @import "variables";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// fontawesome
+@import url('https://use.fontawesome.com/releases/v5.0.10/css/all.css');
 
 .dashboard {
   width: $dashboard-width;

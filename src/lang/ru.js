@@ -7,5 +7,6 @@ export const ru = {
   submit: 'Считать',
   volumeLabel: 'Обьем (м<sup><small>3</small></sup>)',
   print: 'Печатать',
-  total: 'Всего'
+  total: 'Всего',
+  reset: 'Сброс',
 };

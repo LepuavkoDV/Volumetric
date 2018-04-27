@@ -7,5 +7,6 @@ export const ua = {
   submit: 'Розрахувати',
   volumeLabel: 'Об `єм (м<sup><small>3</small></sup>)',
   print: 'Друкувати',
-  total: 'Всього'
+  total: 'Всього',
+  reset: 'Cкинути',
 };

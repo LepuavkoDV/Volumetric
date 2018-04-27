@@ -12,12 +12,12 @@ export default {
     }
   },
   computed: {
-    fCalcTotalVolume: function () { // Расчёт сумм по строкам и общего итога
+    fCalcTotalVolume: function () {
       var tbTotalVolume = 0;
-      for (var i = 0; i < this.list.length; ++i) { // Цикл по строкам таблицы
-        tbTotalVolume = tbTotalVolume + this.list[i].volume; // Расчёт итоговой суммы
+      for (var i = 0; i < this.list.length; ++i) {
+        tbTotalVolume = tbTotalVolume + this.list[i].volume;
       }
-      return tbTotalVolume; // Функция возвращает итоговую сумму
+      return tbTotalVolume;
     }
   },
   methods: {
@@ -62,16 +62,19 @@ export default {
           myWindow.close();
       }
     },
+    reset() {
+      this.list = [];
+    },
   },
 };
 </script>
 
 <template>
   <div class="row align-items-center volumetric-container">
-    <div class="col">
+    <div class="col-md-6 offset-md-3">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title"><span v-lang.title></span></h5>
+          <h5 class="card-title"><i class="fas fa-calculator"></i>&nbsp;<span v-lang.title></span></h5>
         </div>
         <div class="card-body">
           <form v-on:submit.prevent="addEntry()">
@@ -88,10 +91,11 @@ export default {
               <label for="amount"><span v-lang.amountLabel></span></label>
               <input type="number" class="form-control" id="amount" v-model="amount" min="1" required>
             </div>
-            <button type="submit" class="btn btn-primary"><span v-lang.submit></span></button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
+            <button v-if="list.length > 0" class="btn btn-danger float-right" v-on:click.prevent="reset"><i class="fas fa-undo"></i>&nbsp;<span v-lang.reset></span></button>
           </form>
           <div id="printMe" class="resultsTable" v-if="list.length > 0">
-            <table class="table table-responsive-lg">
+            <table class="table table-responsive-md">
               <thead>
                 <tr>
                   <th><span v-lang.diameterLabel></span></th>
@@ -117,7 +121,7 @@ export default {
           </div>
         </div>
         <div class="card-footer">
-          <button v-if="list.length > 0" class="btn btn-outline-primary btn-sm" v-on:click.prevent="print"><span v-lang.print></span></button>
+          <button v-if="list.length > 0" class="btn btn-outline-primary btn-sm" v-on:click.prevent="print"><i class="fas fa-print"></i>&nbsp;<span v-lang.print></span></button>
           <div class="float-right lang-switcher">
             <a v-on:click.prevent="setLanguage('ru')" v-bind:class="currentLanguage('ru')">ru</a> &#9900; <a v-on:click.prevent="setLanguage('ua')" v-bind:class="currentLanguage('ua')">ua</a> &#9900; <a v-on:click.prevent="setLanguage('en')" v-bind:class="currentLanguage('en')">en</a>
           </div>

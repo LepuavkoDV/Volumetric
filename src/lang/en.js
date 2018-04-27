@@ -7,5 +7,6 @@ export const en = {
   submit: 'Count',
   volumeLabel: 'Volume (m<sup><small>3</small></sup>)',
   print: 'Print',
-  total: 'Total'
+  total: 'Total',
+  reset: 'Reset',
 };
