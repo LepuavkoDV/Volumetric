@@ -97,7 +97,7 @@ export default {
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-outline-primary btn-sm" v-on:click.prevent="print"><span v-lang.print></span></button>
+          <button v-if="list.length > 0" class="btn btn-outline-primary btn-sm" v-on:click.prevent="print"><span v-lang.print></span></button>
           <div class="float-right lang-switcher">
             <a v-on:click.prevent="setLanguage('ru')" v-bind:class="currentLanguage('ru')">ru</a> &#9900; <a v-on:click.prevent="setLanguage('ua')" v-bind:class="currentLanguage('ua')">ua</a> &#9900; <a v-on:click.prevent="setLanguage('en')" v-bind:class="currentLanguage('en')">en</a>
           </div>
