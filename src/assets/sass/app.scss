@@ -12,19 +12,15 @@
   margin-left: $dashboard-margin-r-l;
   margin-right: $dashboard-margin-r-l;
   .volumetric-container {
-    height:80vh;
+    margin-top: 5%;
   }
 }
 
 .lang-switcher {
-  color: #6c757d ;
+  color: $gray-600;
   a {
-    color: #6c757d;
+    color: $gray-600;
     cursor: pointer;
-    &:hover {
-      color:red;
-      text-decoration: none;
-    }
   }
   a.active-lang {
     cursor: pointer;
