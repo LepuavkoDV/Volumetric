@@ -1,5 +1,6 @@
 <script>
 /* eslint-disable */
+import LangSwitcher from './../lang/LangSwitcher';
 export default {
   created() {
   },
@@ -20,16 +21,10 @@ export default {
       return tbTotalVolume;
     }
   },
+  components: {
+    LangSwitcher,
+  },
   methods: {
-    currentLanguage(lang) {
-      if (this.language === lang) {
-        return 'active-lang';
-      }
-      return ' ';
-    },
-    setLanguage(lang) {
-      this.language = lang;
-    },
     addEntry() {
       let volume = {
         diameter: this.diameter,
@@ -49,9 +44,10 @@ export default {
     },
     print() {
       var data=document.getElementById('printMe').innerHTML;
-      var myWindow = window.open('', 'Print', 'height=400,width=600');
-      myWindow.document.write('<html><head><title>Print</title>');
+      var myWindow = window.open('', '', 'height=400,width=600');
+      myWindow.document.write('<html><head><title></title>');
       myWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">');
+      myWindow.document.write('<style>@page{margin: 20mm 10mm;}</style>');
       myWindow.document.write('</head><body >');
       myWindow.document.write(data);
       myWindow.document.write('</body></html>');
@@ -122,9 +118,7 @@ export default {
         </div>
         <div class="card-footer">
           <button v-if="list.length > 0" class="btn btn-outline-primary btn-sm" v-on:click.prevent="print"><i class="fas fa-print"></i>&nbsp;<span v-lang.print></span></button>
-          <div class="float-right lang-switcher">
-            <a v-on:click.prevent="setLanguage('ru')" v-bind:class="currentLanguage('ru')">ru</a> &#9900; <a v-on:click.prevent="setLanguage('ua')" v-bind:class="currentLanguage('ua')">ua</a> &#9900; <a v-on:click.prevent="setLanguage('en')" v-bind:class="currentLanguage('en')">en</a>
-          </div>
+          <LangSwitcher></LangSwitcher>
         </div>
       </div>
     </div>
