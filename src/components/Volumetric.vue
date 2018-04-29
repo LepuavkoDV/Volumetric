@@ -1,6 +1,8 @@
 <script>
 /* eslint-disable */
 import LangSwitcher from './../lang/LangSwitcher';
+import Round from './../modules/Round';
+import PrintPage from './../modules/PrintPage';
 export default {
   created() {
   },
@@ -18,7 +20,7 @@ export default {
       for (var i = 0; i < this.list.length; ++i) {
         tbTotalVolume = tbTotalVolume + this.list[i].volume;
       }
-      return tbTotalVolume;
+      return Round(tbTotalVolume, 3);
     }
   },
   components: {
@@ -30,7 +32,7 @@ export default {
         diameter: this.diameter,
         length: this.length,
         amount: this.amount,
-        volume: this.calculateVolume(),
+        volume: Round(this.calculateVolume(), 3),
       }
       this.list.push(volume);
       this.diameter = this.length = this.amount = null;
@@ -43,20 +45,7 @@ export default {
       return vol * this.amount;
     },
     print() {
-      var data=document.getElementById('printMe').innerHTML;
-      var myWindow = window.open('', '', 'height=400,width=600');
-      myWindow.document.write('<html><head><title></title>');
-      myWindow.document.write('<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">');
-      myWindow.document.write('<style>@page{margin: 20mm 10mm;}</style>');
-      myWindow.document.write('</head><body >');
-      myWindow.document.write(data);
-      myWindow.document.write('</body></html>');
-      myWindow.document.close(); // necessary for IE >= 10
-      myWindow.onload=function(){ // necessary if the div contain images
-          myWindow.focus(); // necessary for IE >= 10
-          myWindow.print();
-          myWindow.close();
-      }
+      PrintPage('printMe');
     },
     reset() {
       this.list = [];
@@ -105,12 +94,12 @@ export default {
                   <td>{{vol.diameter}}</td>
                   <td>{{vol.length}}</td>
                   <td>{{vol.amount}}</td>
-                  <td>{{vol.volume.toFixed(3)}}</td>
+                  <td>{{vol.volume}}</td>
                 </tr>
                 <tr class="table-primary">
                   <td colspan="2"></td>
                   <td><span v-lang.total></span>:</td>
-                  <td>{{fCalcTotalVolume.toFixed(3)}}</td>
+                  <td>{{fCalcTotalVolume}}</td>
                 </tr>
               </tbody>
             </table>
