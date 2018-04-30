@@ -105,7 +105,7 @@ export default {
               <select v-on:change="recalculateEntriesInList" class="form-control" id="deflectionFactor" v-model="deflectionFactor">
                 <option value="1.1936"><span v-lang.opt1></span></option>
                 <option value="1.1551"><span v-lang.opt2></span></option>
-                <option value="0"><span v-lang.opt3></span></option>
+                <option value="1"><span v-lang.opt3></span></option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
