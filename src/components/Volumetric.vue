@@ -5,7 +5,8 @@ import Round from './../modules/Round';
 import PrintPage from './../modules/PrintPage';
 import CalculateVolume from './../modules/CalculateVolume';
 export default {
-  created() {},
+  created() {
+  },
   data() {
     return {
       list: [],
@@ -14,6 +15,11 @@ export default {
       length: null,
       amount: null,
       deflectionFactor: 1.1936,
+      calculationStandarts: [
+        {val: 1.1936, name: 'gost270875'},
+        {val: 1.1551, name: 'iso448043'},
+        {val: 1, name: 'roundlogs'},
+      ]
     }
   },
   computed: {
@@ -23,6 +29,13 @@ export default {
         tbTotalVolume = tbTotalVolume + this.list[i].volume;
       }
       return Round(tbTotalVolume, this.decimalPlaces);
+    },
+    fGetCurrentCalculationName: function() {
+      let that = this;
+      var entry = this.calculationStandarts.find(function(i) {
+        return i.val === parseFloat(that.deflectionFactor);
+      });
+      return this.translate(entry.name);
     },
   },
   components: {
@@ -62,6 +75,9 @@ export default {
     print() {
       PrintPage('printMe');
     },
+    translateKey: function(key) {
+      return this.translate(key);
+    }
   },
 };
 </script>
@@ -91,9 +107,7 @@ export default {
             <div class="form-group">
               <label for="deflectionFactor"><span v-lang.calculations></span></label>
               <select v-on:change="recalculateEntriesInList" class="form-control" id="deflectionFactor" v-model="deflectionFactor">
-                <option value="1.1936"><span v-lang.opt1></span></option>
-                <option value="1.1551"><span v-lang.opt2></span></option>
-                <option value="1"><span v-lang.opt3></span></option>
+                <option v-for="entry in calculationStandarts" :value="entry.val">{{translateKey(entry.name)}}</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
@@ -123,6 +137,9 @@ export default {
                 </tr>
               </tbody>
             </table>
+            <div class="calc-info">
+              <span v-lang.calculations></span>:&nbsp;{{fGetCurrentCalculationName}}
+            </div>
           </div>
         </div>
         <div class="card-footer">

@@ -10,7 +10,7 @@ export const en = {
   total: 'Total',
   reset: 'Reset',
   calculations: 'Calculations',
-  opt1: 'GOST 2708-75',
-  opt2: 'ISO 4480-43',
-  opt3: 'Round logs'
+  gost270875: 'GOST 2708-75',
+  iso448043: 'ISO 4480-43',
+  roundlogs: 'Round logs'
 };
