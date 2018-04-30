@@ -5,8 +5,7 @@ import Round from './../modules/Round';
 import PrintPage from './../modules/PrintPage';
 import CalculateVolume from './../modules/CalculateVolume';
 export default {
-  created() {
-  },
+  created() {},
   data() {
     return {
       list: [],
@@ -25,46 +24,35 @@ export default {
       }
       return Round(tbTotalVolume, this.decimalPlaces);
     },
-    fGetCalcName: function () {
-
-    }
   },
   components: {
     LangSwitcher,
   },
   methods: {
+    createEntry(data) {
+      data.volume = Round(CalculateVolume(data), this.decimalPlaces);
+      return data;
+    },
     addEntryToList() {
-      let data = {
+      let entry = this.createEntry({
         diameter: this.diameter,
         length: this.length,
         amount: this.amount,
         deflectionFactor: this.deflectionFactor
-      }
-      let volume = {
-        diameter: this.diameter,
-        length: this.length,
-        amount: this.amount,
-        volume: Round(CalculateVolume(data), this.decimalPlaces),
-      }
-      this.list.push(volume);
+      });
+      this.list.push(entry);
       this.diameter = this.length = this.amount = null;
     },
     recalculateEntriesInList() {
       let recalculatedList = [];
       for (var i = 0; i < this.list.length; ++i) {
-        let data = {
+        let entry = this.createEntry({
           diameter: this.list[i].diameter,
           length: this.list[i].length,
           amount: this.list[i].amount,
           deflectionFactor: this.deflectionFactor
-        }
-        let volume = {
-          diameter: this.list[i].diameter,
-          length: this.list[i].length,
-          amount: this.list[i].amount,
-          volume: Round(CalculateVolume(data), this.decimalPlaces),
-        }
-        recalculatedList.push(volume);
+        });
+        recalculatedList.push(entry);
       }
       this.list = recalculatedList;
     },
@@ -135,9 +123,6 @@ export default {
                 </tr>
               </tbody>
             </table>
-<!--             <div class="calculations-info">
-              <span v-lang.calculations></span>: {{this.deflectionFactor}}
-            </div> -->
           </div>
         </div>
         <div class="card-footer">
