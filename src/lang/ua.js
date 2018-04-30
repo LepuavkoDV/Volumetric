@@ -9,4 +9,8 @@ export const ua = {
   print: 'Друкувати',
   total: 'Всього',
   reset: 'Cкинути',
+  calculations: 'Розрахунки по',
+  opt1: 'ГОСТ 2708-75',
+  opt2: 'ISO 4480-43',
+  opt3: 'Оциліндрована колода'
 };

@@ -3,15 +3,18 @@
 import LangSwitcher from './../lang/LangSwitcher';
 import Round from './../modules/Round';
 import PrintPage from './../modules/PrintPage';
+import CalculateVolume from './../modules/CalculateVolume';
 export default {
   created() {
   },
   data() {
     return {
       list: [],
+      decimalPlaces: 2,
       diameter: null,
       length: null,
       amount: null,
+      deflectionFactor: 1.1936,
     }
   },
   computed: {
@@ -20,35 +23,56 @@ export default {
       for (var i = 0; i < this.list.length; ++i) {
         tbTotalVolume = tbTotalVolume + this.list[i].volume;
       }
-      return Round(tbTotalVolume, 3);
+      return Round(tbTotalVolume, this.decimalPlaces);
+    },
+    fGetCalcName: function () {
+
     }
   },
   components: {
     LangSwitcher,
   },
   methods: {
-    addEntry() {
+    addEntryToList() {
+      let data = {
+        diameter: this.diameter,
+        length: this.length,
+        amount: this.amount,
+        deflectionFactor: this.deflectionFactor
+      }
       let volume = {
         diameter: this.diameter,
         length: this.length,
         amount: this.amount,
-        volume: Round(this.calculateVolume(), 3),
+        volume: Round(CalculateVolume(data), this.decimalPlaces),
       }
       this.list.push(volume);
       this.diameter = this.length = this.amount = null;
     },
-    calculateVolume() {
-      const pi = 3.1415;
-      let radius = (this.diameter/2) / 100;
-      let r2 = Math.pow(radius, 2);
-      let vol = pi * r2 * this.length;
-      return vol * this.amount;
+    recalculateEntriesInList() {
+      let recalculatedList = [];
+      for (var i = 0; i < this.list.length; ++i) {
+        let data = {
+          diameter: this.list[i].diameter,
+          length: this.list[i].length,
+          amount: this.list[i].amount,
+          deflectionFactor: this.deflectionFactor
+        }
+        let volume = {
+          diameter: this.list[i].diameter,
+          length: this.list[i].length,
+          amount: this.list[i].amount,
+          volume: Round(CalculateVolume(data), this.decimalPlaces),
+        }
+        recalculatedList.push(volume);
+      }
+      this.list = recalculatedList;
+    },
+    resetList() {
+      this.list = [];
     },
     print() {
       PrintPage('printMe');
-    },
-    reset() {
-      this.list = [];
     },
   },
 };
@@ -62,7 +86,7 @@ export default {
           <h5 class="card-title"><i class="fas fa-calculator"></i>&nbsp;<span v-lang.title></span></h5>
         </div>
         <div class="card-body">
-          <form v-on:submit.prevent="addEntry()">
+          <form v-on:submit.prevent="addEntryToList()">
             <div class="form-group">
               <label for="diameter"><span v-lang.diameterLabel></span></label>
               <input type="number" class="form-control" id="diameter" aria-describedby="diameterHelp" v-model="diameter" min="1" required>
@@ -76,8 +100,16 @@ export default {
               <label for="amount"><span v-lang.amountLabel></span></label>
               <input type="number" class="form-control" id="amount" v-model="amount" min="1" required>
             </div>
+            <div class="form-group">
+              <label for="deflectionFactor"><span v-lang.calculations></span></label>
+              <select v-on:change="recalculateEntriesInList" class="form-control" id="deflectionFactor" v-model="deflectionFactor">
+                <option value="1.1936"><span v-lang.opt1></span></option>
+                <option value="1.1551"><span v-lang.opt2></span></option>
+                <option value="0"><span v-lang.opt3></span></option>
+              </select>
+            </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
-            <button v-if="list.length > 0" class="btn btn-danger float-right" v-on:click.prevent="reset"><i class="fas fa-undo"></i>&nbsp;<span v-lang.reset></span></button>
+            <button v-if="list.length > 0" class="btn btn-danger float-right" v-on:click.prevent="resetList"><i class="fas fa-undo"></i>&nbsp;<span v-lang.reset></span></button>
           </form>
           <div id="printMe" class="resultsTable" v-if="list.length > 0">
             <table class="table table-responsive-md">
@@ -103,6 +135,9 @@ export default {
                 </tr>
               </tbody>
             </table>
+<!--             <div class="calculations-info">
+              <span v-lang.calculations></span>: {{this.deflectionFactor}}
+            </div> -->
           </div>
         </div>
         <div class="card-footer">

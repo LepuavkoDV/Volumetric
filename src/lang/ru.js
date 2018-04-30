@@ -9,4 +9,8 @@ export const ru = {
   print: 'Печатать',
   total: 'Всего',
   reset: 'Сброс',
+  calculations: 'Расчет по',
+  opt1: 'ГОСТ 2708-75',
+  opt2: 'ISO 4480-43',
+  opt3: 'Оцилиндрованое бревно'
 };

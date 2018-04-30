@@ -9,4 +9,8 @@ export const en = {
   print: 'Print',
   total: 'Total',
   reset: 'Reset',
+  calculations: 'Calculations',
+  opt1: 'GOST 2708-75',
+  opt2: 'ISO 4480-43',
+  opt3: 'Round logs'
 };
