@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       list: [],
-      decimalPlaces: 2,
+      decimalPlaces: 3,
       diameter: null,
       length: null,
       amount: null,
