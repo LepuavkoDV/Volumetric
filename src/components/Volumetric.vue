@@ -130,7 +130,7 @@ export default {
                   <td>{{vol.amount}}</td>
                   <td>{{vol.volume}}</td>
                 </tr>
-                <tr class="table-primary">
+                <tr class="table-info">
                   <td colspan="2"></td>
                   <td><span v-lang.total></span>:</td>
                   <td>{{fCalcTotalVolume}}</td>
