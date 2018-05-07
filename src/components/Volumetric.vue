@@ -111,7 +111,7 @@ export default {
               </select>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
-            <button v-if="list.length > 0" class="btn btn-danger float-right" v-on:click.prevent="resetList"><i class="fas fa-undo"></i>&nbsp;<span v-lang.reset></span></button>
+            <button v-if="list.length > 0" class="btn btn-outline-danger float-right" v-on:click.prevent="resetList"><i class="fas fa-undo"></i>&nbsp;<span v-lang.reset></span></button>
           </form>
           <div id="printMe" class="resultsTable" v-if="list.length > 0">
             <table class="table table-responsive-md">
