@@ -10,8 +10,9 @@
  * @param {number} dp
  * @return {number}
  */
-module.exports = function(num, dp) {
-    if (arguments.length != 2) throw new Error("2 arguments required");
+export default function (num, dp) {
+    if (arguments.length != 2)
+        throw new Error("2 arguments required");
     num = String(num);
     if (num.indexOf('e+') != -1) {
         // Can't round numbers this large because their string representation
@@ -22,19 +23,17 @@ module.exports = function(num, dp) {
         // Nothing to do
         return num;
     }
-    var parts = num.split('.'),
-        beforePoint = parts[0],
-        afterPoint = parts[1],
-        shouldRoundUp = afterPoint[dp] >= 5,
-        finalNumber;
+    var parts = num.split('.'), beforePoint = parts[0], afterPoint = parts[1], shouldRoundUp = afterPoint[dp] >= 5, finalNumber;
     afterPoint = afterPoint.slice(0, dp);
     if (!shouldRoundUp) {
         finalNumber = beforePoint + '.' + afterPoint;
-    } else if (/^9+$/.test(afterPoint)) {
+    }
+    else if (/^9+$/.test(afterPoint)) {
         // If we need to round up a number like 1.9999, increment the integer
         // before the decimal point and discard the fractional part.
         finalNumber = Number(beforePoint) + 1;
-    } else {
+    }
+    else {
         // Starting from the last digit, increment digits until we find one
         // that is not 9, then stop
         var i = dp - 1;
@@ -42,7 +41,8 @@ module.exports = function(num, dp) {
             if (afterPoint[i] == '9') {
                 afterPoint = afterPoint.substr(0, i) + '0' + afterPoint.substr(i + 1);
                 i--;
-            } else {
+            }
+            else {
                 afterPoint = afterPoint.substr(0, i) + (Number(afterPoint[i]) + 1) + afterPoint.substr(i + 1);
                 break;
             }
@@ -50,5 +50,5 @@ module.exports = function(num, dp) {
         finalNumber = beforePoint + '.' + afterPoint;
     }
     // Remove trailing zeroes from fractional part before returning
-    return parseFloat(finalNumber.replace(/0+$/, ''))
+    return parseFloat(finalNumber.replace(/0+$/, ''));
 }

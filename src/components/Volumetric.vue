@@ -107,7 +107,7 @@ export default {
             <div class="form-group">
               <label for="deflectionFactor"><span v-lang.calculations></span></label>
               <select v-on:change="recalculateEntriesInList" class="form-control" id="deflectionFactor" v-model="deflectionFactor">
-                <option v-for="entry in calculationStandarts" :value="entry.val">{{translateKey(entry.name)}}</option>
+                <option v-for="entry in calculationStandarts" :key="entry.val" :value="entry.val">{{translateKey(entry.name)}}</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-archive"></i>&nbsp;<span v-lang.submit></span></button>
@@ -124,7 +124,7 @@ export default {
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="vol in list">
+                <tr v-for="vol in list" :key="vol.volume">
                   <td>{{vol.diameter}}</td>
                   <td>{{vol.length}}</td>
                   <td>{{vol.amount}}</td>

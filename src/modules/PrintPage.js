@@ -1,5 +1,5 @@
 /* eslint-disable */
-module.exports = function(elemId) {
+export default function (elemId) {
     var data = document.getElementById(elemId).innerHTML;
     var myWindow = window.open('', '', 'height=400,width=600');
     myWindow.document.write('<html><head><title></title>');
@@ -9,9 +9,9 @@ module.exports = function(elemId) {
     myWindow.document.write(data);
     myWindow.document.write('</body></html>');
     myWindow.document.close(); // necessary for IE >= 10
-    myWindow.onload = function() { // necessary if the div contain images
+    myWindow.onload = function () {
         myWindow.focus(); // necessary for IE >= 10
         myWindow.print();
         myWindow.close();
-    }
+    };
 }

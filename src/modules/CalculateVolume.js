@@ -4,7 +4,7 @@
  * @param  {[array]} data [diameter, length, amount, deflectionFactor]
  * @return {[number]}
  */
-module.exports = function(data) {
+export default function (data) {
     // validate data
     if (!data.diameter) {
         throw new Error('Calcualtions require diameter');
